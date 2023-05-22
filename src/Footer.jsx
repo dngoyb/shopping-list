@@ -1,8 +1,10 @@
-const Footer = () => {
-	const date = new Date().getFullYear();
+const Footer = ({ numberOfItems }) => {
 	return (
 		<footer>
-			<p>Copyright &copy; {date}</p>
+			<p>
+				You have {numberOfItems} {numberOfItems > 0 ? ' items' : ' item'} in
+				your list
+			</p>
 		</footer>
 	);
 };
