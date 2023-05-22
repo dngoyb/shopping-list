@@ -25,6 +25,7 @@ const Content = () => {
 			item.id === id ? { ...item, checked: !item.checked } : item
 		);
 		setItems(listItems);
+		localStorage.setItem('shoppinglist', JSON.stringify(listItems));
 	};
 	return (
 		<main>
@@ -36,7 +37,11 @@ const Content = () => {
 							checked={checked}
 							onChange={() => handleCheck(id)}
 						/>
-						<label htmlFor=''>items</label>
+						<label
+							style={checked ? { textDecoration: 'line-through' } : null}
+							onDoubleClick={() => handleCheck(id)}>
+							items
+						</label>
 						<FaTrashAlt role='button' tabIndex='0' />
 					</li>
 				))}
