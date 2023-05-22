@@ -1,10 +1,14 @@
+import Header from './Header';
+import Content from './Content';
+import Footer from './Footer';
+
 function App() {
 	return (
-		<>
-			<div>
-				<h1>Hello from vite</h1>
-			</div>
-		</>
+		<div className='App'>
+			<Header />
+			<Content />
+			<Footer />
+		</div>
 	);
 }
 
