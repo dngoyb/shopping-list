@@ -2,8 +2,7 @@ const Footer = ({ numberOfItems }) => {
 	return (
 		<footer>
 			<p>
-				You have {numberOfItems} {numberOfItems > 0 ? ' items' : ' item'} in
-				your list
+				You have {numberOfItems} {numberOfItems !== 1 ? ' items' : ' item'}
 			</p>
 		</footer>
 	);
