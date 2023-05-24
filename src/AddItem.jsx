@@ -2,7 +2,7 @@ import { FaPlus } from 'react-icons/fa';
 
 const AddItem = ({ newItem, setNewItem, handleSubmit }) => {
 	return (
-		<form action='' className='addForm'>
+		<form action='' className='addForm' onSubmit={handleSubmit}>
 			<label htmlFor='addItem'>Add Item</label>
 			<input
 				type='text'
