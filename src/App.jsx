@@ -13,6 +13,7 @@ function App() {
 	const [newItem, setNewItem] = useState('');
 	const [searchItem, setSearchItem] = useState('');
 	const [fetchError, setFetchError] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchItems = async () => {
@@ -24,10 +25,14 @@ function App() {
 				setFetchError(null);
 			} catch (error) {
 				setFetchError(error.message);
+			} finally {
+				setIsLoading(false);
 			}
 		};
 
-		fetchItems();
+		setTimeout(() => {
+			fetchItems();
+		}, 2000);
 	}, []);
 
 	const setAndSaveItems = (newItems) => {
@@ -69,8 +74,9 @@ function App() {
 				handleSubmit={handleSubmit}
 			/>
 			<main>
+				{isLoading && <p>Loading Items...</p>}
 				{fetchError && <p style={{ color: 'red' }}>{`Error: ${fetchError}`}</p>}
-				{!fetchError && (
+				{!fetchError && !isLoading && (
 					<Content
 						items={items.filter((item) =>
 							item.item.toLowerCase().includes(searchItem.toLowerCase())
