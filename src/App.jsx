@@ -7,16 +7,25 @@ import SearchItem from './SearchItem';
 import { useEffect } from 'react';
 
 function App() {
-	const [items, setItems] = useState(
-		JSON.parse(localStorage.getItem('shoppinglist')) || []
-	);
+	const API_URL = 'http://localhost:3500/items';
+
+	const [items, setItems] = useState([]);
 	const [newItem, setNewItem] = useState('');
 	const [searchItem, setSearchItem] = useState('');
 
 	useEffect(() => {
-		localStorage.setItem('shoppinglist', JSON.stringify(items));
-		console.log(items[items.length - 1].item);
-	}, [items]);
+		const fetchItems = async () => {
+			try {
+				const response = await fetch(API_URL);
+				const listItems = await response.json();
+				setItems(listItems);
+			} catch (error) {
+				console.log(err.stack);
+			}
+		};
+
+		fetchItems();
+	}, []);
 
 	const setAndSaveItems = (newItems) => {
 		setItems(newItems);
