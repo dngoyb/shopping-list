@@ -5,23 +5,9 @@ import Footer from './Footer';
 import AddItem from './AddItem';
 
 function App() {
-	const [items, setItems] = useState([
-		{
-			id: 1,
-			checked: false,
-			item: 'Item 1',
-		},
-		{
-			id: 2,
-			checked: false,
-			item: 'Item 2',
-		},
-		{
-			id: 3,
-			checked: false,
-			item: 'Item 3',
-		},
-	]);
+	const [items, setItems] = useState(
+		JSON.parse(localStorage.getItem('shoppinglist')) || []
+	);
 	const [newItem, setNewItem] = useState('');
 
 	const setAndSaveItems = (newItems) => {
