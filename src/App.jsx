@@ -4,6 +4,7 @@ import Content from './Content';
 import Footer from './Footer';
 import AddItem from './AddItem';
 import SearchItem from './SearchItem';
+import { useEffect } from 'react';
 
 function App() {
 	const [items, setItems] = useState(
@@ -12,9 +13,13 @@ function App() {
 	const [newItem, setNewItem] = useState('');
 	const [searchItem, setSearchItem] = useState('');
 
+	useEffect(() => {
+		localStorage.setItem('shoppinglist', JSON.stringify(items));
+		console.log(items[items.length - 1].item);
+	}, [items]);
+
 	const setAndSaveItems = (newItems) => {
 		setItems(newItems);
-		localStorage.setItem('shoppinglist', JSON.stringify(newItems));
 	};
 
 	const handleCheck = (id) => {
@@ -40,7 +45,6 @@ function App() {
 		if (!newItem) return;
 		addItem(newItem);
 		setNewItem('');
-		console.log(newItem);
 	};
 
 	return (
